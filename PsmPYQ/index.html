@@ -994,7 +994,7 @@
             
             .palette-grid {
                 grid-template-columns: repeat(10, 40px);
-                grid-auto-flow: column;
+                grid-auto-flow: row;
                 overflow-x: auto;
             }
         }
@@ -1315,7 +1315,7 @@
                     </div>
                 </div>
                 
-                <div class="setting-group">
+                <!--<div class="setting-group">
                     <h3><i class="fas fa-save"></i> Auto-Save</h3>
                     <div class="setting">
                         <div class="setting-label">Auto-save progress</div>
@@ -1332,7 +1332,7 @@
                             <input type="number" min="10" max="300" value="30" id="saveInterval" style="width: 60px;">
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" id="resetSettingsBtn">Reset Defaults</button>
@@ -1453,9 +1453,9 @@
                     //questionCount: parseInt(questionCount.value),
                     timePerQuestion: parseInt(timePerQuestion.value),
                     showImages: document.getElementById('showImages').checked,
-                    showExplanation: document.getElementById('showExplanation').checked,
-                    autoSave: document.getElementById('autoSave').checked,
-                    saveInterval: parseInt(document.getElementById('saveInterval').value)
+                    showExplanation: document.getElementById('showExplanation').checked
+                    //autoSave: document.getElementById('autoSave').checked,
+                    //saveInterval: parseInt(document.getElementById('saveInterval').value)
                 };
                 
                 localStorage.setItem('mcqSettings', JSON.stringify(settings));
@@ -1470,8 +1470,8 @@
                     timePerQuestion: 60,
                     showImages: true,
                     showExplanation: true,
-                    autoSave: true,
-                    saveInterval: 30
+                    //autoSave: true,
+                    //saveInterval: 30
                 };
                 
                 //questionCount.value = savedSettings.questionCount;
@@ -1480,8 +1480,8 @@
                 timePerQuestionValue.textContent = `${savedSettings.timePerQuestion} sec`;
                 document.getElementById('showImages').checked = savedSettings.showImages;
                 document.getElementById('showExplanation').checked = savedSettings.showExplanation;
-                document.getElementById('autoSave').checked = savedSettings.autoSave;
-                document.getElementById('saveInterval').value = savedSettings.saveInterval;
+                //document.getElementById('autoSave').checked = savedSettings.autoSave;
+                //document.getElementById('saveInterval').value = savedSettings.saveInterval;
             }
             
             // Initialize with default settings
