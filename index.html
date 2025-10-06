@@ -132,7 +132,7 @@
       </section>
 
       <footer>
-        <div>Created by <strong contenteditable="true">Ghazali</strong></div>
+        <div>Created by <strong>Ghazali</strong></div>
         <div style="color:var(--muted)">PSM • v1</div>
       </footer>
     </main>
@@ -145,11 +145,13 @@
     (function(){
       try{
         const status = localStorage.getItem('status');
+		const triedKey = 'accountCreationTried';
+		const tk = localStorage.getItem(triedKey);
         if (status === 'Rejected'){
           document.getElementById('links-grid').style.display = 'none';
           const msg = document.getElementById('rejected-msg'); msg.style.display = 'block';
         } else if (status === 'Approved'){
-        }else if (status === 'pending') {
+        }else if (status === 'pending' && tk == 'yes') {
 		  window.location.href = "https://www.ghazali.work.gd/create.html";
 		}else{
 		  document.getElementById('cont').style.display = 'none';
