@@ -24,7 +24,7 @@
 	<select id="year">
     <option value="1">1st Year</option>
     <option value="2">2nd Year</option>
-    <option value="3">3rd Year</option>
+    <option value="3" selected>3rd Year</option>
     <option value="4">4th Year</option>
     <option value="5">Internship</option>
 	</select>
@@ -117,7 +117,7 @@
 		if(localStorage.getItem('status') == 'Rejected'){
 		  Swal.fire({icon: 'error',title: 'Rejected',text: 'Your request was rejected already.', allowOutsideClick: false});
 		}else if(localStorage.getItem('status') == 'Approved'){
-		  Swal.fire({icon: 'info',title: 'Approved',text: 'Your request has already been approved!', allowOutsideClick: false});
+		  Swal.fire({icon: 'info',title: 'Approved',text: 'Your request has already been approved!', allowOutsideClick: false});window.location.href = "https://www.ghazali.work.gd";
 		}else{
 		  Swal.fire({icon: 'warning',title: 'Pending',text: 'Your request is pending review. Please check status if You want.'});
           showStatusSection();
