@@ -1252,7 +1252,7 @@
 					<div style="text-align: center; margin-top: 10px;"><div class="score-circle" style="--score: 0;"><div class="score-value">0%</div></div>
                     <div class="score-text">Your score will appear here</div></div>
                     <h2 style="margin-bottom: 12px;"><i class="fas fa-analytics"></i> Analysis</h2>
-                    <div class="results-list" id="dataana" style="display:flex;">
+                    <div class="results-list" id="dataana" style="">
                     <!-- Analysis will be populated by JavaScript -->
                     </div>
                     <h2 style="margin-bottom: 12px;"><i class="fas fa-book"></i> Question Review</h2>
@@ -2676,22 +2676,6 @@ function loadProgress() {
             // Initialize the app
             initUI();
             
-            // Check for saved progress
-            const savedProgress = loadProgress();
-            if (savedProgress) {
-                if (confirm('Resume your previous test?')) {
-                    currentTest = savedProgress;
-                    startTimer();
-                    renderQuestion();
-                    renderPalette();
-                    
-                    document.getElementById('testView').style.display = 'flex';
-                    document.getElementById('resultsView').style.display = 'none';
-                }
-            }
-            
-// -- Create the saver interval (after loadgui has initialized)
-saverInterval = setInterval(saveProgress, 30000); // Every 30 seconds
         }
     </script>
 </body>
