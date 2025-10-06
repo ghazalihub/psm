@@ -1453,9 +1453,9 @@
                     //questionCount: parseInt(questionCount.value),
                     timePerQuestion: parseInt(timePerQuestion.value),
                     showImages: document.getElementById('showImages').checked,
-                    showExplanation: document.getElementById('showExplanation').checked,
-                    autoSave: document.getElementById('autoSave').checked,
-                    saveInterval: parseInt(document.getElementById('saveInterval').value)
+                    showExplanation: document.getElementById('showExplanation').checked
+                    //autoSave: document.getElementById('autoSave').checked,
+                    //saveInterval: parseInt(document.getElementById('saveInterval').value)
                 };
                 
                 localStorage.setItem('mcqSettings', JSON.stringify(settings));
@@ -1469,9 +1469,9 @@
                     //questionCount: 20,
                     timePerQuestion: 60,
                     showImages: true,
-                    showExplanation: true,
-                    autoSave: true,
-                    saveInterval: 30
+                    showExplanation: true
+                    //autoSave: true,
+                    //saveInterval: 30
                 };
                 
                 //questionCount.value = savedSettings.questionCount;
@@ -1480,8 +1480,8 @@
                 timePerQuestionValue.textContent = `${savedSettings.timePerQuestion} sec`;
                 document.getElementById('showImages').checked = savedSettings.showImages;
                 document.getElementById('showExplanation').checked = savedSettings.showExplanation;
-                document.getElementById('autoSave').checked = savedSettings.autoSave;
-                document.getElementById('saveInterval').value = savedSettings.saveInterval;
+                //document.getElementById('autoSave').checked = savedSettings.autoSave;
+                //document.getElementById('saveInterval').value = savedSettings.saveInterval;
             }
             
             // Initialize with default settings
@@ -1631,7 +1631,7 @@
     },
     {
         "id": 24,
-        "url": "Preventive_Obstetrics_and_Gynecology__Pediatrics__Growth__Development__School_Health",
+        "url": "Preventive_Obstetrics_and_Gynecology__Pediatrics__Growth__Develpment__School_Health",
         "name": "Preventive Obstetrics and Gynecology  Pediatrics  Growth  Development  School Health",
         "count": 6
     },
