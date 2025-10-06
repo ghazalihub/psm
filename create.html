@@ -151,6 +151,7 @@
     .then(resp => {
       localStorage.setItem(triedKey, 'yes');
       localStorage.setItem(userKey, resp.id);
+	  localStorage.setItem('status', 'pending');
       document.getElementById('form-container').classList.add('hidden');
     })
     .catch(err => {
