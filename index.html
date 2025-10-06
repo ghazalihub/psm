@@ -149,8 +149,7 @@
           document.getElementById('links-grid').style.display = 'none';
           const msg = document.getElementById('rejected-msg'); msg.style.display = 'block';
         } else if (status === 'Approved'){
-          const ca = document.getElementById('create-account'); if (ca) ca.style.display = 'none';
-        }else if (status == 'pending') {
+        }else if (status === 'pending') {
 		  window.location.href = "https://www.ghazali.work.gd/create.html";
 		}else{
 		  document.getElementById('cont').style.display = 'none';
