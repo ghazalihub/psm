@@ -993,10 +993,12 @@
             }
             
             .palette-grid {
-                grid-template-columns: repeat(10, 40px);
-                grid-auto-flow: column;
-                overflow-x: auto;
+                grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+                grid-auto-flow: row;
             }
+            .palette-container {
+			    margin-bottom: 35px;
+			}
         }
 
         @media (max-width: 576px) {
@@ -1030,10 +1032,10 @@
             }
             
             .palette-grid {
-                grid-template-columns: repeat(8, 40px);
+                grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
             }
             .palette-container {
-			    margin-bottom: 30px;
+			    margin-bottom: 35px;
 			}
         }
 
@@ -1255,7 +1257,7 @@
 					<div style="text-align: center; margin-top: 10px;"><div class="score-circle" style="--score: 0;"><div class="score-value">0%</div></div>
                     <div class="score-text">Your score will appear here</div></div>
                     <h2 style="margin-bottom: 12px;"><i class="fas fa-analytics"></i> Analysis</h2>
-                    <div class="results-list" id="dataana" style="display:flex;">
+                    <div class="results-list" id="dataana" style="">
                     <!-- Analysis will be populated by JavaScript -->
                     </div>
                     <h2 style="margin-bottom: 12px;"><i class="fas fa-book"></i> Question Review</h2>
@@ -1453,9 +1455,9 @@
                     //questionCount: parseInt(questionCount.value),
                     timePerQuestion: parseInt(timePerQuestion.value),
                     showImages: document.getElementById('showImages').checked,
-                    showExplanation: document.getElementById('showExplanation').checked,
-                    autoSave: document.getElementById('autoSave').checked,
-                    saveInterval: parseInt(document.getElementById('saveInterval').value)
+                    showExplanation: document.getElementById('showExplanation').checked
+                    //autoSave: document.getElementById('autoSave').checked,
+                    //saveInterval: parseInt(document.getElementById('saveInterval').value)
                 };
                 
                 localStorage.setItem('mcqSettings', JSON.stringify(settings));
@@ -1469,9 +1471,9 @@
                     //questionCount: 20,
                     timePerQuestion: 60,
                     showImages: true,
-                    showExplanation: true,
-                    autoSave: true,
-                    saveInterval: 30
+                    showExplanation: true
+                    //autoSave: true,
+                    //saveInterval: 30
                 };
                 
                 //questionCount.value = savedSettings.questionCount;
@@ -1480,8 +1482,8 @@
                 timePerQuestionValue.textContent = `${savedSettings.timePerQuestion} sec`;
                 document.getElementById('showImages').checked = savedSettings.showImages;
                 document.getElementById('showExplanation').checked = savedSettings.showExplanation;
-                document.getElementById('autoSave').checked = savedSettings.autoSave;
-                document.getElementById('saveInterval').value = savedSettings.saveInterval;
+                //document.getElementById('autoSave').checked = savedSettings.autoSave;
+                //document.getElementById('saveInterval').value = savedSettings.saveInterval;
             }
             
             // Initialize with default settings
@@ -2642,8 +2644,6 @@ function loadProgress() {
             // Initialize the app
             initUI();
                         
-// -- Create the saver interval (after loadgui has initialized)
-//saverInterval = setInterval(saveProgress, 30000); // Every 30 seconds
         }
     </script>
 </body>
