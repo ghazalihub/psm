@@ -1199,6 +1199,9 @@
                         <button class="btn btn-outline" id="prevBtn" disabled>
                             <i class="fas fa-arrow-left"></i> Prev
                         </button>
+                        <button class="btn btn-success" id="submitTestBtn">
+                            <i class="fas fa-check-circle"></i> Submit Test
+                        </button>
                         <button class="btn btn-primary" id="nextBtn">
                             Next <i class="fas fa-arrow-right"></i>
                         </button>
@@ -1312,7 +1315,7 @@
                     </div>
                 </div>
                 
-                <div class="setting-group">
+                <!--<div class="setting-group">
                     <h3><i class="fas fa-save"></i> Auto-Save</h3>
                     <div class="setting">
                         <div class="setting-label">Auto-save progress</div>
@@ -1329,7 +1332,7 @@
                             <input type="number" min="10" max="300" value="30" id="saveInterval" style="width: 60px;">
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" id="resetSettingsBtn">Reset Defaults</button>
@@ -1664,6 +1667,11 @@
                 document.getElementById('prevBtn').addEventListener('click', prevQuestion);
                 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
                 document.getElementById('markReviewBtn').addEventListener('click', markForReview);
+                document.getElementById('submitTestBtn').addEventListener('click', function() {
+                     if (confirm("Are you sure you want to submit the test?")) {
+                         submitTest(); // Call the existing submitTest function
+                     }
+                });
                 
                 // Results navigation
                 //document.getElementById('reviewBtn').addEventListener('click', function() {
@@ -2677,22 +2685,6 @@ function loadProgress() {
             // Initialize the app
             initUI();
             
-            // Check for saved progress
-            const savedProgress = loadProgress();
-            if (savedProgress) {
-                if (confirm('Resume your previous test?')) {
-                    currentTest = savedProgress;
-                    startTimer();
-                    renderQuestion();
-                    renderPalette();
-                    
-                    document.getElementById('testView').style.display = 'flex';
-                    document.getElementById('resultsView').style.display = 'none';
-                }
-            }
-            
-// -- Create the saver interval (after loadgui has initialized)
-saverInterval = setInterval(saveProgress, 30000); // Every 30 seconds
         }
     </script>
 </body>
