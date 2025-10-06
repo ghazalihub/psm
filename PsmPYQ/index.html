@@ -1199,6 +1199,9 @@
                         <button class="btn btn-outline" id="prevBtn" disabled>
                             <i class="fas fa-arrow-left"></i> Prev
                         </button>
+                        <button class="btn btn-success" id="submitTestBtn">
+                            <i class="fas fa-check-circle"></i> Submit Test
+						</button>
                         <button class="btn btn-primary" id="nextBtn">
                             Next <i class="fas fa-arrow-right"></i>
                         </button>
@@ -1663,6 +1666,11 @@
                 document.getElementById('prevBtn').addEventListener('click', prevQuestion);
                 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
                 document.getElementById('markReviewBtn').addEventListener('click', markForReview);
+                document.getElementById('submitTestBtn').addEventListener('click', function() {
+                     if (confirm("Are you sure you want to submit the test?")) {
+                         submitTest(); // Call the existing submitTest function
+                     }
+                });
                 
                 // Results navigation
                 //document.getElementById('reviewBtn').addEventListener('click', function() {
