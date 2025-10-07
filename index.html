@@ -50,26 +50,6 @@
 
       <section class="grid" id="links-grid">
 
-        <a class="btn" id="prepladder" href="PsmPQB/index.html">
-          <div style="display:flex;align-items:center;gap:12px;width:100%">
-            <div class="dot">PP</div>
-            <div>
-              <div class="title">Prepladder Qbank</div>
-              <div class="desc">Prepladder questions</div>
-            </div>
-          </div>
-        </a>
-
-        <a class="btn" id="prepladder-rapid" href="PsmPRR/index.html">
-          <div style="display:flex;align-items:center;gap:12px;width:100%">
-            <div class="dot">PR</div>
-            <div>
-              <div class="title">Prepladder — Rapid Revision</div>
-              <div class="desc">Rapid revision sets</div>
-            </div>
-          </div>
-        </a>
-
         <a class="btn" id="dams" href="PsmDQB/index.html">
           <div style="display:flex;align-items:center;gap:12px;width:100%">
             <div class="dot">DA</div>
@@ -109,7 +89,35 @@
             </div>
           </div>
         </a>
+        <a class="btn" id="pw" href="PsmPW/index.html">
+          <div style="display:flex;align-items:center;gap:12px;width:100%">
+            <div class="dot">PW</div>
+            <div>
+              <div class="title">PW meded</div>
+              <div class="desc">PW meded question set</div>
+            </div>
+          </div>
+        </a>
 
+        <a class="btn" id="prepladder" href="PsmPQB/index.html">
+          <div style="display:flex;align-items:center;gap:12px;width:100%">
+            <div class="dot">PP</div>
+            <div>
+              <div class="title">Prepladder Qbank</div>
+              <div class="desc">Prepladder questions</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="btn" id="prepladder-rapid" href="PsmPRR/index.html">
+          <div style="display:flex;align-items:center;gap:12px;width:100%">
+            <div class="dot">PR</div>
+            <div>
+              <div class="title">Prepladder — Rapid Revision</div>
+              <div class="desc">Rapid revision sets</div>
+            </div>
+          </div>
+        </a>
         <!--<a class="btn" id="notes" href="/revision-notes.html">
           <div style="display:flex;align-items:center;gap:12px;width:100%">
             <div class="dot">RN</div>
@@ -133,6 +141,19 @@
     // Simple localStorage behaviour (optional):
     // If status = 'Rejected' => hide all links and show message.
     // If status = 'Approved' => hide the create-account link (assuming account already approved).
+// Function to check if 2 days have passed since last status check
+function shouldCheckStatus() {
+  const lastCheck = localStorage.getItem('lastStatusCheck');
+  if (!lastCheck) return true; // First time check
+  
+  const twoDaysInMs = 2 * 24 * 60 * 60 * 1000; // 2 days in milliseconds
+  const now = Date.now();
+  
+  return (now - parseInt(lastCheck)) >= twoDaysInMs;
+}
+    const API = 'https://script.google.com/macros/s/AKfycbzkRpfz69eToypfm7YAbeqFULFGOdnF0Ncak7vWbYfhgV1jjC6IxI3N4PbM4Se5EX04/exec';
+    const userKey = 'qbUser';
+
     (function(){
       try{
         const status = localStorage.getItem('status');
@@ -142,6 +163,28 @@
           document.getElementById('links-grid').style.display = 'none';
           const msg = document.getElementById('rejected-msg'); msg.style.display = 'block';
         } else if (status === 'Approved'){
+		
+		// Only fetch status if it's been 2 days since last check
+if (shouldCheckStatus()) {
+  fetch(API + '?action=getStatus&id=' + user)
+    .then(r => r.json())
+    .then(data => {
+      if (data.status == 'Rejected') {
+        // Save subjects and allow login later
+        localStorage.setItem('status', 'Rejected');
+        // Optionally set device login flag here
+        Swal.fire({icon: 'error', title: 'Rejected', text: 'You are Banned by Admin.', allowOutsideClick: false});
+      }
+      // Save current timestamp as last check time
+      localStorage.setItem('lastStatusCheck', Date.now().toString());
+    })
+    .catch(error => {
+      console.error('Error checking status:', error);
+      // Still update last check time to avoid repeated failed requests
+      //localStorage.setItem('lastStatusCheck', Date.now().toString());
+    });
+}
+		
         }else if (status === 'pending' && tk == 'yes') {
 		  window.location.href = "https://www.ghazali.work.gd/create.html";
 		}else{
